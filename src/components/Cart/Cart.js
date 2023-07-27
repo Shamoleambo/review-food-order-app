@@ -8,7 +8,9 @@ const Cart = ({ onHideCart }) => {
   const ctx = useContext(CartContext)
 
   const removeCartItemHandler = (id) => {}
-  const addCartItemHandler = (item) => {}
+  const addCartItemHandler = (item) => {
+    ctx.addItem({ ...item, amount: 1 })
+  }
 
   const totalAmount = `$${ctx.totalAmount.toFixed(2)}`
   const hasItems = ctx.items.length > 0
