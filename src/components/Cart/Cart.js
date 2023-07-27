@@ -7,7 +7,9 @@ import classes from './Cart.module.css'
 const Cart = ({ onHideCart }) => {
   const ctx = useContext(CartContext)
 
-  const removeCartItemHandler = (id) => {}
+  const removeCartItemHandler = (id) => {
+    ctx.removeItem(id)
+  }
   const addCartItemHandler = (item) => {
     ctx.addItem({ ...item, amount: 1 })
   }
