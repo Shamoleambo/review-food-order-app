@@ -33,15 +33,13 @@ const cartReducer = (state, action) => {
     const itemToBeRemovedIndex = state.items.findIndex(
       (item) => item.id === action.id
     )
-    const itemToBeRemoved = updatedItems[itemToBeRemovedIndex]
+    const itemToBeRemoved = state.items[itemToBeRemovedIndex]
 
-    const updatedTotalAmount = state.totalAmount - itemToBeRemoved.price
+    const updatedTotalAmount =
+      state.totalAmount.toFixed(2) - itemToBeRemoved.price
 
     if (itemToBeRemoved.amount === 1) {
-      updatedItems = [
-        ...updatedItems.slice(0, itemToBeRemovedIndex),
-        ...updatedItems.slice(itemToBeRemovedIndex + 1)
-      ]
+      updatedItems = state.items.filter((item) => item.id !== action.id)
     } else {
       updatedItems[itemToBeRemovedIndex] = {
         ...itemToBeRemoved,
